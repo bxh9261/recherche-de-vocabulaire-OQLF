@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Translation Tool</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+    <style>
+        /* Add your CSS styles here */
+    </style>
 </head>
 <body>
     <h1>Translation Tool</h1>
@@ -13,22 +15,35 @@
     <p id="result"></p>
     
     <script>
+        function parseCSV(csv) {
+            const lines = csv.split('\n');
+            const headers = lines[0].split(',');
+            const data = [];
+
+            for (let i = 1; i < lines.length; i++) {
+                const values = lines[i].split(',');
+                const row = {};
+
+                for (let j = 0; j < headers.length; j++) {
+                    row[headers[j]] = values[j];
+                }
+
+                data.push(row);
+            }
+
+            return data;
+        }
+
         // Function to read and translate from CSV
         function translations() {
-    const englishTerm = document.getElementById("englishTerm").value;
+            const englishTerm = document.getElementById("englishTerm").value;
 
-    // Debugging statement to check the input value
-    console.log("Input English Term:", englishTerm);
+            // Replace with the actual CSV data
+            const csvData = `English,French\ndog,chien\ncat,chat`; // Sample data
 
-    Papa.parse('vocab_example.csv', {
-        header: true,
-        dynamicTyping: true,
-        complete: function(results) {
-            const data = results.data;
-            console.log("CSV Data:", data); // Debugging statement to check CSV data
+            const data = parseCSV(csvData);
 
             const translation = data.find(row => row.English === englishTerm);
-            console.log("Translation:", translation); // Debugging statement to check the translation
 
             if (translation) {
                 document.getElementById("result").textContent = `French Translation: ${translation.French}`;
@@ -36,8 +51,6 @@
                 document.getElementById("result").textContent = "Translation not found.";
             }
         }
-    });
-}
     </script>
 </body>
 </html>
