@@ -38,18 +38,22 @@
         function translations() {
             const englishTerm = document.getElementById("englishTerm").value;
 
-            // Replace with the actual CSV data
-            const csvData = `English,French\ndog,chien\ncat,chat`; // Sample data
+            // Fetch the CSV file content
+            fetch('data/vocab_example.csv')
+                .then(response => response.text())
+                .then(csvData => {
+                    const data = parseCSV(csvData);
+                    const translation = data.find(row => row.English === englishTerm);
 
-            const data = parseCSV(csvData);
-
-            const translation = data.find(row => row.English === englishTerm);
-
-            if (translation) {
-                document.getElementById("result").textContent = `French Translation: ${translation.French}`;
-            } else {
-                document.getElementById("result").textContent = "Translation not found.";
-            }
+                    if (translation) {
+                        document.getElementById("result").textContent = `French Translation: ${translation.French}`;
+                    } else {
+                        document.getElementById("result").textContent = "Translation not found.";
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching CSV:', error);
+                });
         }
     </script>
 </body>
