@@ -1,0 +1,64 @@
+/* Reset some default styles and provide a basic styling for the input and button */
+body {
+    margin: 0 0 0 10px;
+    padding: 0;
+}
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+input[type="text"] {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px 5px 5px 5px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: 1px solid #4CAF50;
+    border-radius: 5px 5px 5px 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+
+h1, h2, h3 {
+    text-align: center;
+}
+
+hr {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input {
+    width: 200px;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+button {
+    padding: 7px 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+#result {
+    margin-top: 20px;
+}

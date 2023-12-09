@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles.css">
     <title>Details</title>
 </head>
 <body>
@@ -9,12 +10,12 @@
     <hr>
     <h2>Details</h2>
     <hr><br>
-    <label for="englishTerm">Enter an English term:</label>
-    <input type="text" id="englishTerm" onkeypress="handleKeyPress(event)">
-    <button onclick="translations()">Search</button>
-    <p id="detailResult"></p>
+    <label for="englishTermLabel">Enter an English term:</label>
+    <input type="text" id="englishTerm">
+    <button id="searchBtn">Search</button>
+    <h3 id="detailResult"></h3>
     
+    <script src="detail.js"></script>
     <script src="main.js"></script>
 </body>
 </html>
-

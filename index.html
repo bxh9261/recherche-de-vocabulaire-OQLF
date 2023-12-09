@@ -2,17 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles.css">
     <title>Projet Terminologie - Index</title>
 </head>
 <body>
     <h1>Projet Terminologie</h1>
+    <hr>
+    <h2>Index</h2>
     <hr><br>
-    <label for="englishTerm">Enter an English term:</label>
-    <input type="text" id="englishTerm" onkeypress="handleKeyPress(event)">
-    <button onclick="translations()">Search</button>
-    <p id="result"></p>
+    <label for="englishTermLabel">Enter an English term:</label>
+    <input type="text" id="englishTerm">
+    <button id="searchBtn">Search</button>
+    <button id="indexBtn">Index</button>
+    <h3 id="result"></h3>
     
     <script src="main.js"></script>
 </body>
 </html>
-
