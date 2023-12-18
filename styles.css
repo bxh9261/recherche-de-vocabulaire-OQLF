@@ -1,26 +1,25 @@
 body {
     margin: 0;
     padding: 0 10px;
-    background-color: #f7f7f7; /* Light background color */
+    background-color: #f7f7f7;
 }
 
 h1, h2, h3 {
     text-align: center;
-    color: #333; /* Dark text color */
-    /* font-size: 22px; */
+    color: #333;
 }
 
 hr {
     margin-top: 10px;
     margin-bottom: 20px;
-    border-color: #ddd; /* Light border color */
+    border-color: #ddd;
 }
 
 label {
     display: block;
     margin-right: 15px;
     font-size: 22px;
-    color: #555; /* Medium text color */
+    color: #555;
 }
 
 .search-container {
@@ -29,10 +28,10 @@ label {
     justify-content: center;
     flex-wrap: wrap;
     margin-top: 20px;
-    background-color: #fff; /* White background color */
+    background-color: #fff;
     padding: 20px;
     border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adding a subtle box shadow for depth */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .larger-input {
@@ -48,21 +47,21 @@ label {
 button {
     padding: 12px 25px;
     font-size: 22px;
-    background-color: #3498db; /* Blue button color */
+    background-color: #3498db;
     color: #fff;
-    border: 1px solid #3498db; /* Matching border color */
+    border: 1px solid #3498db;
     border-radius: 10px;
     cursor: pointer;
 }
 
 button:hover {
-    background-color: #2980b9; /* Darker blue on hover */
+    background-color: #2980b9;
 }
 
 .center {
     text-align: center;
     margin-top: 20px;
-    color: #777; /* Light text color */
+    color: #777;
 }
 
 #result {
@@ -75,8 +74,6 @@ button:hover {
     font-size: 32px;   
 }
 
-/* Add this to your existing CSS */
-
 .index-table {
     width: 100%;
     border-collapse: collapse;
@@ -84,31 +81,21 @@ button:hover {
 }
 
 .index-table th, .index-table td {
-    /* border: 1px solid #ddd; */
     padding: 8px;
-    text-align: left; /* Left-align the text */
+    text-align: left;
 }
 
 .index-table th {
     background-color: #f2f2f2;
 }
 
-/* Optional styling for header cells */
 .header-cell {
     font-weight: bold;
     color: #555;
     text-decoration: underline;
 }
 
-
-/* Optional styling for data cells */
-.data-cell {
-    /* Add any additional styling for data cells */
-}
-
-/* Add this to your existing CSS */
-
 .line-break {
-    border-bottom: 1px solid #000; /* Add a line break styling */
-    margin-bottom: 10px; /* Adjust the margin as needed */
+    border-bottom: 1px solid #000;
+    margin-bottom: 10px;
 }
