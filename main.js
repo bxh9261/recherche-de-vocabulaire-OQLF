@@ -1,11 +1,8 @@
-// main.js
-
 document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('searchBtn').addEventListener('click', searchAndNavigate);
     document.getElementById('englishTerm').addEventListener('keypress', handleKeyPress);
     document.getElementById('indexBtn').addEventListener('click', indexx);
 });
-
 
 function handleKeyPress(event) {
     if (event.key === "Enter") {
@@ -27,17 +24,62 @@ function indexx() {
 
 function displayIndex(data) {
     const resultContainer = document.getElementById('result');
-    
+
     // Clear previous content
     resultContainer.innerHTML = '';
 
-    // Display the data on the page
+    // Sort the data alphabetically by the "English" property
+    data.sort((a, b) => a.English.localeCompare(b.English));
+
+    // Display the data in a table
+    const tableElement = document.createElement('table');
+    tableElement.classList.add('index-table');
+
+    // Create table header
+    const headerRow = tableElement.insertRow();
+    const headerCell1 = headerRow.insertCell(0);
+    const headerCell2 = headerRow.insertCell(1);
+    headerCell1.textContent = 'English';
+    headerCell2.textContent = 'French';
+
+    // Add a class to the header cells for styling (optional)
+    headerCell1.classList.add('header-cell');
+    headerCell2.classList.add('header-cell');
+
+    // Variable to store the previous first letter
+    let previousFirstLetter = '';
+
+    // Create table rows
     data.forEach(row => {
-        const rowElement = document.createElement('h5');
-        rowElement.textContent = `English: ${row.English}, French: ${row.French}`;
-        resultContainer.appendChild(rowElement);
+        // Check if the first letter is different from the previous entry
+        if (row.English.charAt(0).toUpperCase() !== previousFirstLetter) {
+            // Add a line break before this entry
+            const lineBreakRow = tableElement.insertRow();
+            const lineBreakCell1 = lineBreakRow.insertCell(0);
+            const lineBreakCell2 = lineBreakRow.insertCell(1);
+            lineBreakCell1.classList.add('line-break');
+            lineBreakCell2.classList.add('line-break');
+            // Update the previous first letter
+            previousFirstLetter = row.English.charAt(0).toUpperCase();
+        }
+
+        const tableRow = tableElement.insertRow();
+        const cell1 = tableRow.insertCell(0);
+        const cell2 = tableRow.insertCell(1);
+        cell1.textContent = row.English;
+        cell2.textContent = row.French;
+
+        // Add a class to the data cells for styling
+        cell1.classList.add('data-cell');
+        cell2.classList.add('data-cell');
     });
+
+    // Append the table to the result container
+    resultContainer.appendChild(tableElement);
 }
+
+
+
 
 // Function to read and translate from CSV
 function translations(englishTerm) {
@@ -48,7 +90,6 @@ function translations(englishTerm) {
             .then(csvData => {
                 const data = parseCSV(csvData);
                 const translation = data.find(row => row.English === englishTerm);
-                // multisensory information
                 if (translation) {
                     resolve(translation.French);
                 } else {
@@ -64,18 +105,13 @@ function translations(englishTerm) {
 async function searchAndNavigate() {
     try {
         var englishTerm = document.getElementById('englishTerm').value;
-        // document.getElementById('result').innerText = 'Result: ' + englishTerm;
-
         var translationsResult = await translations(englishTerm);
-        // Redirect to detail.html with the translation result as a query parameter
         window.location.href = `detail.html?term=${encodeURIComponent(englishTerm)}&translation=${encodeURIComponent(translationsResult)}`;
-        // document.getElementById('result2').innerText = 'Result2: ' + translationsResult;
     } catch (error) {
         console.error(error);
         document.getElementById('result').innerText = 'Error: ' + error;
     }
 }
-
 
 function parseCSV(csv) {
     const lines = csv.split('\n');

@@ -1,64 +1,114 @@
-/* Reset some default styles and provide a basic styling for the input and button */
 body {
-    margin: 0 0 0 10px;
-    padding: 0;
+    margin: 0;
+    padding: 0 10px;
+    background-color: #f7f7f7; /* Light background color */
 }
-
-.search-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-}
-
-input[type="text"] {
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ddd;
-    border-radius: 5px 5px 5px 5px;
-}
-
-button {
-    padding: 10px 20px;
-    font-size: 16px;
-    background-color: #4CAF50;
-    color: #fff;
-    border: 1px solid #4CAF50;
-    border-radius: 5px 5px 5px 5px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #45a049;
-}
-
 
 h1, h2, h3 {
     text-align: center;
+    color: #333; /* Dark text color */
+    /* font-size: 22px; */
 }
 
 hr {
     margin-top: 10px;
     margin-bottom: 20px;
+    border-color: #ddd; /* Light border color */
 }
 
 label {
     display: block;
-    margin-bottom: 5px;
+    margin-right: 15px;
+    font-size: 22px;
+    color: #555; /* Medium text color */
 }
 
-input {
-    width: 200px;
-    padding: 5px;
-    margin-bottom: 10px;
+.search-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    background-color: #fff; /* White background color */
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adding a subtle box shadow for depth */
+}
+
+.larger-input {
+    width: 400px;
+    height: 40px;
+    padding: 10px;
+    font-size: 26px;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    margin-right: 15px;
 }
 
 button {
-    padding: 7px 10px;
-    margin-bottom: 10px;
+    padding: 12px 25px;
+    font-size: 22px;
+    background-color: #3498db; /* Blue button color */
+    color: #fff;
+    border: 1px solid #3498db; /* Matching border color */
+    border-radius: 10px;
     cursor: pointer;
+}
+
+button:hover {
+    background-color: #2980b9; /* Darker blue on hover */
+}
+
+.center {
+    text-align: center;
+    margin-top: 20px;
+    color: #777; /* Light text color */
 }
 
 #result {
     margin-top: 20px;
+    color: #555;
+    font-size: 32px;   
+}
+
+#detailResult{
+    font-size: 32px;   
+}
+
+/* Add this to your existing CSS */
+
+.index-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.index-table th, .index-table td {
+    /* border: 1px solid #ddd; */
+    padding: 8px;
+    text-align: left; /* Left-align the text */
+}
+
+.index-table th {
+    background-color: #f2f2f2;
+}
+
+/* Optional styling for header cells */
+.header-cell {
+    font-weight: bold;
+    color: #555;
+    text-decoration: underline;
+}
+
+
+/* Optional styling for data cells */
+.data-cell {
+    /* Add any additional styling for data cells */
+}
+
+/* Add this to your existing CSS */
+
+.line-break {
+    border-bottom: 1px solid #000; /* Add a line break styling */
+    margin-bottom: 10px; /* Adjust the margin as needed */
 }
