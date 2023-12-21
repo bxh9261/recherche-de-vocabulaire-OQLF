@@ -35,7 +35,7 @@ label {
 }
 
 .larger-input {
-    width: 400px;
+    width: 650px;
     height: 40px;
     padding: 10px;
     font-size: 26px;
@@ -98,4 +98,15 @@ button:hover {
 .line-break {
     border-bottom: 1px solid #000;
     margin-bottom: 10px;
+}
+
+
+.linked-word {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+.linked-word:hover {
+    text-decoration: underline;
 }

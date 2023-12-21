@@ -56,7 +56,14 @@ function displayIndex(data) {
         const tableRow = tableElement.insertRow();
         const cell1 = tableRow.insertCell(0);
         const cell2 = tableRow.insertCell(1);
-        cell1.textContent = row.English;
+
+        const link = document.createElement('a');
+        link.href = `detail.html?term=${encodeURIComponent(row.English)}&translation=${encodeURIComponent(row.French)}`;
+        
+        link.textContent = row.English;
+        link.classList.add('linked-word');
+        cell1.appendChild(link);
+
         cell2.textContent = row.French;
 
         cell1.classList.add('data-cell');
@@ -68,18 +75,32 @@ function displayIndex(data) {
 
 
 
-
-function translations(englishTerm) {
+function translations(term, direction) {
     return new Promise((resolve, reject) => {
         fetch('data/vocab_example.csv')
             .then(response => response.text())
             .then(csvData => {
                 const data = parseCSV(csvData);
-                const translation = data.find(row => row.English === englishTerm);
-                if (translation) {
-                    resolve(translation.French);
+
+                let translation;
+                const searchTerm = term.toLowerCase();
+
+                if (direction === 'en-to-fr') {
+                    translation = data.find(row => row.English.toLowerCase() === searchTerm);
+                    if (translation) {
+                        resolve(translation.French);
+                    } else {
+                        reject("We don't have translation for this word");
+                    }
+                } else if (direction === 'fr-to-en') {
+                    translation = data.find(row => row.French.toLowerCase() === searchTerm);
+                    if (translation) {
+                        resolve(translation.English);
+                    } else {
+                        reject("We don't have translation for this word");
+                    }
                 } else {
-                    reject("Translation not found.");
+                    reject("Invalid translation direction");
                 }
             })
             .catch(error => {
@@ -88,16 +109,25 @@ function translations(englishTerm) {
     });
 }
 
+
 async function searchAndNavigate() {
     try {
         var englishTerm = document.getElementById('englishTerm').value;
-        var translationsResult = await translations(englishTerm);
-        window.location.href = `detail.html?term=${encodeURIComponent(englishTerm)}&translation=${encodeURIComponent(translationsResult)}`;
+        var translationDirection = document.querySelector('input[name="translationDirection"]:checked');
+
+        if (!translationDirection) {
+            throw new Error("Please select a translation direction.");
+        }
+
+        translationDirection = translationDirection.value;
+
+        var translationsResult = await translations(englishTerm, translationDirection);
+        window.location.href = `detail.html?term=${encodeURIComponent(englishTerm)}&translation=${encodeURIComponent(translationsResult)}&direction=${encodeURIComponent(translationDirection)}`;
     } catch (error) {
-        console.error(error);
-        document.getElementById('result').innerText = 'Error: ' + error;
+        window.location.href = `detail.html?term=${encodeURIComponent('Sorry')}&translation=${encodeURIComponent(error)}`;
     }
 }
+
 
 function parseCSV(csv) {
     const lines = csv.split('\n');
